@@ -13,7 +13,7 @@ listUser = {
 
 #Função principal
 def main():
-    print("---Bem vindo ao todo list---\n")
+    print("-"*25+"!Trello"+"-"*26+"\n")
 
 
     print("Digite:\n")
@@ -41,7 +41,7 @@ def login():
         showTask()
     else:
         clear()
-        print("Dados invalidos, tente novamente.")
+        print("Dados invalidos, tente novamente.\n")
         login()
 
 #Função de cadastro
@@ -75,11 +75,11 @@ def menu():
             rmvTasks()
         elif op == "3":
             clear()
-            editTask()
-        
-        elif op == "4":
-                # play = False
+            editTask()        
+        elif op == "4":                
             print("Bye")
+            clear()
+            login()
         else:
             print("Opção inválida")
             menu()
@@ -87,7 +87,7 @@ def menu():
 
 #Menu de edição das tarefas
 def menuEdicao():
-    op = input("(1:Cancelar) (2:Editar outro)")
+    op = input("(1:Cancelar) (2:Editar outro)\n")
     if(op=="1"):
         clear()
         showTask()
@@ -142,11 +142,12 @@ def editTask():
 
 #Lista tarefas
 def showTask():
-    print("Lista de Tarefas:\n")
+    print("="*25 + "Bem Vindo ao !Trello" + "="*26)
+    print("\nLista de Tarefas:\n")
     for showlist in listTask:
         print(showlist)
     print()
-    print("=" * 100)
+    print("=" * 71)
     menu()
 
 
