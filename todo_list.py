@@ -1,19 +1,22 @@
 listTask = []
 
 listUser = {
-    "usuario",
-    "senha"
+    "user": "teste",
+    "pass": "123"
 }
 
 def main():
     print("---Bem vindo ao todo list---\n")
 
+
     print("Digite:\n")
-    escolha = input("(1: Cadastrar) (2:Entrar)")
+    escolha = input("(1: Cadastrar) (2:Entrar) (3:Sair)")
     if escolha == "1":
         cadastrar()
     elif escolha == "2":
         login()
+    else:
+        pass
 
 def login():
     print("LOGIN\n")
@@ -23,7 +26,7 @@ def login():
     user = input("Digite seu usuario: \n")
     senha = input("Digite sua senha: \n")
 
-    if user == listUser["usuario"] and senha == listUser["senha"]:
+    if user == listUser["user"] and senha == listUser["pass"]:
         menu()
     else:
         print("Dados invalidos, tente novamente.")
@@ -36,9 +39,9 @@ def cadastrar():
     print("Informe os dados:\n")
 
     user = input("Digite seu usuario de login: \n")
-    user = listUser.get("usuario")
+    listUser["usuario"] = user
     senha = input("Digite sua senha de login: \n")
-    senha = listUser.get("senha")
+    listUser["senha"] = senha
 
     confir = input("Deseja confirmar seus dados? (1:SIM) (2:NÂO)\n")
     if confir == "1":
@@ -61,7 +64,7 @@ def menu():
         else:
                 # play = False
             print("Bye")
-            break
+        break
 
 def addTasks():
     task = input("Digite uma tarefa: ")
@@ -79,6 +82,7 @@ def rmvTasks():
 
     if (task in listTask):
         listTask.remove(task)
+        menu()
     else:
         print("tarefa não existe, tente novamente")
         rmvTasks()
@@ -88,6 +92,7 @@ def showTask():
     print("Lista de Tarefas:\n")
     for showlist in listTask:
         print(showlist)
+    menu()
 
 
 
