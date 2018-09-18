@@ -1,3 +1,7 @@
+#módulo pra limpar console
+import os
+clear = lambda: os.system('cls')
+
 #Iniciando lista de tarefas vazia
 listTask = []
 
@@ -13,10 +17,12 @@ def main():
 
 
     print("Digite:\n")
-    escolha = input("(1: Cadastrar) (2:Entrar) (3:Sair)")
+    escolha = input("(1: Cadastrar) (2:Entrar) (3:Sair)\n")
     if escolha == "1":
+        clear()
         cadastrar()
     elif escolha == "2":
+        clear()
         login()
     else:
         pass
@@ -31,8 +37,10 @@ def login():
     senha = input("Digite sua senha: \n")
 
     if user == listUser["user"] and senha == listUser["pass"]:
-        menu()
+        clear()
+        showTask()
     else:
+        clear()
         print("Dados invalidos, tente novamente.")
         login()
 
@@ -58,27 +66,31 @@ def menu():
     print("MENU:\n")
     play = True
     while play == True:
-        op = input("Menu: (1:Adicionar) (2:Remover) (3:Editar) (4:Mostrar Lista) (5:sair)\n")
+        op = input("(1:Adicionar) (2:Remover) (3:Editar) (4:sair)\n")
         if op == "1":
+            clear()
             addTasks()
         elif op == "2":
+            clear()
             rmvTasks()
         elif op == "3":
+            clear()
             editTask()
+        
         elif op == "4":
-            showTask()
-        elif op == "5":
                 # play = False
             print("Bye")
         else:
             print("Opção inválida")
-        break
+            menu()
+        
 
 #Menu de edição das tarefas
 def menuEdicao():
     op = input("(1:Cancelar) (2:Editar outro)")
     if(op=="1"):
-        menu()
+        clear()
+        showTask()
     elif(op=="2"):
         editTask()
     else:
@@ -86,30 +98,36 @@ def menuEdicao():
 
 #Adiciona a tarefa
 def addTasks():
+    print("Adicionando Tarefas...\n")
     task = input("Digite uma tarefa: ")
     listTask.append(task)
 
     ask = input("Deseja adicionar outra tarefa? (1:Y) (2:N)\n")
-    if ask == "1" or ask =="y":
+    if ask == "1" or ask =="y":       
         addTasks()
+        
     elif ask == "2" or ask=="n":
-        menu()
+        clear()
+        showTask()
     else:
         print("Opção inválida")
+        addTask()
 
 #Remove tarefa
 def rmvTasks():
+    print("Removendo Tarefa...\n")
     task = input("Digite a tarefa que deseja remover: ")
-
     if (task in listTask):
-        listTask.remove(task)
-        menu()
+        listTask.remove(task)       
+        clear()
+        showTask()
     else:
         print("tarefa não existe, tente novamente")
         rmvTasks()
 
 #Edita tarefa
 def editTask():
+    print("Editando Tarefa...\n")
     task = input("Digite a tarefa que deseja editar: ")    
     if(task in listTask):
         taskEdit = input("Tarefa: " + task +"\nDigite a nova versão: ")
@@ -127,6 +145,8 @@ def showTask():
     print("Lista de Tarefas:\n")
     for showlist in listTask:
         print(showlist)
+    print()
+    print("=" * 100)
     menu()
 
 
