@@ -1,17 +1,19 @@
 #módulo pra limpar console
+import sys
 import os
 clear = lambda: os.system('cls')
+
+
 
 #Iniciando lista de tarefas vazia
 listTask = []
 
 #Dicionário de usuario
 listUser = {
-    "user": "teste",
-    "pass": "123"
+
 }
 
-#Função principal
+#Função de inicializacao
 def main():
     print("-"*25+"!Trello"+"-"*26+"\n")
 
@@ -24,25 +26,39 @@ def main():
     elif escolha == "2":
         clear()
         login()
-    else:
-        pass
+    elif escolha == "3":
+        sys.exit()
+
 
 #Função de login
 def login():
     print("LOGIN\n")
 
-    print("Informe os dados:\n")
+    print("Digite:\n")
 
-    user = input("Digite seu usuario: \n")
-    senha = input("Digite sua senha: \n")
+    escolha = input("(1: Logar) (2: Voltar) (3:Sair)\n")
+    if escolha == "1":
+        print("Informe os dados:\n")
 
-    if user == listUser["user"] and senha == listUser["pass"]:
+        user = input("Digite seu usuario: \n")
+        senha = input("Digite sua senha: \n")
+
+        if user == "" and senha == "":
+            print("Dados invalidos, tente novamente.\n")
+            login()
+        elif user == listUser["user"] and senha == listUser["pass"]:
+            clear()
+            showTask()
+        else:
+            clear()
+            print("Dados invalidos, tente novamente.\n")
+            login()
+    elif escolha == "2":
         clear()
-        showTask()
-    else:
-        clear()
-        print("Dados invalidos, tente novamente.\n")
-        login()
+        main()
+    elif escolha == "3":
+        sys.exit()
+
 
 #Função de cadastro
 def cadastrar():
@@ -51,9 +67,9 @@ def cadastrar():
     print("Informe os dados:\n")
 
     user = input("Digite seu usuario de login: \n")
-    listUser["usuario"] = user
+    listUser["user"] = user
     senha = input("Digite sua senha de login: \n")
-    listUser["senha"] = senha
+    listUser["pass"] = senha
 
     confir = input("Deseja confirmar seus dados? (1:SIM) (2:NÂO)\n")
     if confir == "1" or confir == "sim":
@@ -61,7 +77,7 @@ def cadastrar():
     else:
         cadastrar()
 
-#Menu principal
+#Funcao Menu principal
 def menu():
     print("MENU:\n")
     play = True
@@ -85,7 +101,7 @@ def menu():
             menu()
         
 
-#Menu de edição das tarefas
+#Funcao para menu de edição das tarefas
 def menuEdicao():
     op = input("(1:Cancelar) (2:Editar outro)\n")
     if(op=="1"):
@@ -96,7 +112,7 @@ def menuEdicao():
     else:
         print("Opção inválida")
 
-#Adiciona a tarefa
+#Funcao para adicionar tarefa
 def addTasks():
     print("Adicionando Tarefas...\n")
     task = input("Digite uma tarefa: ")
@@ -111,9 +127,9 @@ def addTasks():
         showTask()
     else:
         print("Opção inválida")
-        addTask()
+        addTasks()
 
-#Remove tarefa
+#Funcao para remover tarefa
 def rmvTasks():
     print("Removendo Tarefa...\n")
     task = input("Digite a tarefa que deseja remover: ")
@@ -125,7 +141,7 @@ def rmvTasks():
         print("tarefa não existe, tente novamente")
         rmvTasks()
 
-#Edita tarefa
+#Funcao para editar tarefa
 def editTask():
     print("Editando Tarefa...\n")
     task = input("Digite a tarefa que deseja editar: ")    
@@ -140,7 +156,7 @@ def editTask():
         editTask()
 
 
-#Lista tarefas
+#Funcao para listar as tarefas
 def showTask():
     print("="*25 + "Bem Vindo ao !Trello" + "="*26)
     print("\nLista de Tarefas:\n")
@@ -152,5 +168,5 @@ def showTask():
 
 
 
-
+# inicializacao do programa chamando a funcao main()
 main()
