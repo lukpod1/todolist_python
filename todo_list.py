@@ -1,4 +1,4 @@
-#módulo pra limpar console
+#módulo pra limpar console e modulo para fechar o programa
 import sys
 import os
 clear = lambda: os.system('cls')
